@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
+import Doggos from './Doggos'
+import Main from './Main'
 
 class Header extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             userInput: ''
         }
@@ -12,21 +14,22 @@ class Header extends Component {
         this.setState({userInput: value})
     }
 
-    searchFunction(userInput){
-
-    }
-
     render(){
+        // let displayDoggos = props.dogs.filter((dog, index) =>{
+        //     return dogs.name.includes(this.state.userInput)
+        // }).map((dog, index) => {
+        //     return <Doggos key={index}/>
+        // })
+
         return (
-            <div>
-                <h1>DogShiz</h1>
+            <div className='headerDiv'>
+                <h1 className='headerTitle'>DogShiz.</h1>
                 <input 
+                    className='headerInputBar'
                     onChange={event => this.handleChange(event.target.value)} 
                     placeholder='Search the doggos' 
                 />
-                <button
-                    onClick={() => this.searchFunction(this.state.userInput)}
-                >Search</button>
+                {/* {displayDoggos} */}
             </div>
         )
     }

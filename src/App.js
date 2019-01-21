@@ -8,10 +8,6 @@ import Main from './Components/Main';
 
 class App extends Component {
 
-  componentDidMount(){
-    axios.get('/api/dog')
-    .then((response) => console.log(response))
-  }
 
   render() {
     return (

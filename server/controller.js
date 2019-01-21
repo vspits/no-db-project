@@ -1,33 +1,33 @@
 let dogs = [
     {
         name: 'Jayla',
-        image: '',
+        image: './Jayla.JPG',
         bio: 'Very good doggo, best of all the doggos',
         comments: '',
         index: 0
     },
     {
         name: 'Kodiak',
-        image: '',
-        bio: 'Very lazy doggo',
+        image: './Kodiak.jpg',
+        bio: 'Very big lazy doggo',
         comments: '',
         index: 1
     },
     {
         name: 'Jack',
-        image: '',
-        bio: 'Loving doggo',
+        image: './Jack.jpeg',
+        bio: 'Good with kids doggo',
         comments: '',
         index: 2
     },
 ]
 
 module.exports = {
-    getDog: (request, response) => {
+    get: (request, response) => {
         console.log(dogs)
         response.status(200).send(dogs)
     },
-    addDog: (request, response) => {
+    post: (request, response) => {
         const index = dogs[dogs.length-1].index+1
 
         const newDog = {
@@ -37,6 +37,18 @@ module.exports = {
             index: index
         }
         dogs.push(newDog)
+        response.status(200).send(dogs)
+    },
+    update: (request, response) => {
+        let {id} = request.params
+        let object = dogs.find((element) => {
+            return element.id === +id;
+        })
+        object.name = 
+        response.status(200).send(dogs)
+    },
+    delete: (request, response) => {
+
         response.status(200).send(dogs)
     }
 }

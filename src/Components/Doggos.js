@@ -1,23 +1,31 @@
 import React, {Component} from 'react'
+import Comment from './Comment'
+import DeleteDoggo from './DeleteDoggo'
 
 const Doggos = (props) => {
     return (
-        <div
+        <div 
             className='doggoComponent'
-            style={{border: '1px solid black', height: '400px', width: '300px'}}>
+            style={{height: '90vh', width: '30vw'}}>
 
-            <div 
+            <div
                 className='doggoProfilePic'>
-
-                <img style={{border: '1px solid black', height: '250px', width: '200px'}}/>
+                <img 
+                    src={require(`${props.image}`)} 
+                    style={{width: '70%'}}/>
             </div>
 
             <div 
                 className='doggoComponentText'
-                style={{border: '1px solid black', height: '20%', width: '80%'}}>
+                style={{height: '20%', width: '100%', display: 'flex', flexDirection: 'column'}}>
 
+                <h2 className='nameText'>{props.name}</h2>
+                <p className='bioText'>{props.bio}</p>
             </div>
-
+            <div className='commentBox' style={{height: '25%'}}>
+                <Comment />
+                <DeleteDoggo />
+            </div>
         </div>
     )
 }

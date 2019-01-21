@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Doggos from './Doggos'
 import axios from 'axios';
+import NewDoggo from './NewDoggo'
 
 class Main extends Component {
     constructor(){
@@ -13,42 +14,33 @@ class Main extends Component {
         }
     }
 
-    handleAddDog(){
-        const bodyObj = {
-            name: this.state.name,
-            image: this.state.image,
-            bio: this.state.bio
-        }
-        axios.post('/api/dog', bodyObj)
-        .then(response => {
-            console.log(response)
-            this.setState({
-                doggos: response.data
-            })
-        })
-        this.setState({
-            name: '',
-            image: '',
-            bio: ''
-        })
+    componentDidMount(){
+        axios.get('/api/dog')
+        .then((response) => this.setState({doggos: response.data}))
     }
 
     render(){
+        
         const mappedDoggos = this.state.doggos.map(
             (eachDoggoObj) => {
                 return (
-                    <Doggos key={eachDoggoObj.index} />
+                    <Doggos 
+                        key={eachDoggoObj.index} 
+                        name={eachDoggoObj.name} 
+                        bio={eachDoggoObj.bio}
+                        image={eachDoggoObj.image}/>
                 )
             }
         )
 
         return(
-            <div>
-                <h1>All the doggos:</h1>
+            <div className='mainbody'>
+                <h1 className='mainbodytext'>All the doggos:</h1>
                 <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-around'}}>
-                    <Doggos />
-                    <Doggos />
-                    <Doggos />
+                    {mappedDoggos}
+                </div>
+                <div>
+                    <NewDoggo />
                 </div>
             </div>
         )

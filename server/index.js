@@ -9,11 +9,11 @@ app.use(bodyParser.json())
 
 
 
-app.get(`/api/dog`, controller.getDog)
+app.get(`/api/dog`, controller.get)
 
-app.post(`/api/dog`, controller.addDog)
+app.post(`/api/dog`, controller.post)
 
-app.put(`/api/dog`)
+app.put(`/api/dog:id`)
 
 app.delete(`/api/dog`)
 
