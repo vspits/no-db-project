@@ -19,7 +19,7 @@ class DeleteDoggo extends Component {
             <div>
                 <button 
                 className='deleteButton'
-                onClick={() => this.handleDeleteDoggo}></button>
+                onClick={() => this.handleDeleteDoggo(this.state.doggos)}>Remove Doggo</button>
             </div>
         )
     }

@@ -94,8 +94,8 @@ img {
 }
 .deleteButton {
   background-color:#ce0a00;
-  height: 30px;
-  width: 30px;
   border-radius: 10px;
-  
+  font-family: Avenir;
+  font-size: 14px;
+  margin: 10px
 }
