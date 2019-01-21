@@ -3,15 +3,19 @@ import axios from 'axios'
 import './ex.png'
 
 class DeleteDoggo extends Component {
-    constructor(){
-        super()
-        this.state = {
-            doggo: []
-        }
-    }
+    // constructor(props){
+    //     super(props)
+    //     this.state = {
+    //         doggo: []
+    //     }
+    // }
 
-    handleDeleteDoggo(index){
-        axios.delete(`/api/dog/${index}`).then(response => this.setState({doggo: response.data}))
+    handleDeleteDoggo(index){  
+        console.log(index);
+              
+        axios.delete(`/api/dog/${index}`).then(response => {
+            console.log('11,', response.data)
+            this.setState({doggo: response.data})})
     }
 
     render(){
@@ -19,7 +23,7 @@ class DeleteDoggo extends Component {
             <div>
                 <button 
                 className='deleteButton'
-                onClick={() => this.handleDeleteDoggo(this.state.doggo)}>Remove Doggo</button>
+                onClick={() => this.handleDeleteDoggo(this.props.index)}>Remove Doggo</button>
             </div>
         )
     }

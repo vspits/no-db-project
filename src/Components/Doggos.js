@@ -3,6 +3,8 @@ import Comment from './Comment'
 import DeleteDoggo from './DeleteDoggo'
 
 const Doggos = (props) => {
+    console.log(props);
+    
     return (
         <div 
             className='doggoComponent'
@@ -12,7 +14,8 @@ const Doggos = (props) => {
                 className='doggoProfilePic'>
                 <img 
                     src={require(`${props.image}`)} 
-                    style={{width: '70%'}}/>
+                    style={{width: '70%'}}
+                    alt='dog'/>
             </div>
 
             <div 
@@ -23,8 +26,10 @@ const Doggos = (props) => {
                 <p className='bioText'>{props.bio}</p>
             </div>
             <div className='commentBox' style={{height: '25%'}}>
-                <Comment />
-                <DeleteDoggo />
+                <Comment 
+                    index={props.index}/>
+                <DeleteDoggo 
+                    index={props.index}/>
             </div>
         </div>
     )

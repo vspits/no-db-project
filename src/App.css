@@ -101,3 +101,8 @@ img {
   margin: 10px;
   color: white;
 }
+
+.commentsDiv {
+  margin: 20px;
+  text-align: left;
+}

@@ -3,21 +3,21 @@ let dogs = [
         name: 'Jayla',
         image: './Jayla.JPG',
         bio: 'Very good doggo, best of all the doggos',
-        comments: '',
+        comments: [],
         index: 0
     },
     {
         name: 'Kodiak',
         image: './Kodiak.jpg',
         bio: 'Very big lazy doggo',
-        comments: '',
+        comments: [],
         index: 1
     },
     {
         name: 'Jack',
         image: './Jack.jpeg',
         bio: 'Good with kids doggo',
-        comments: '',
+        comments: [],
         index: 2
     },
 ]
@@ -27,6 +27,7 @@ module.exports = {
         console.log(dogs)
         response.status(200).send(dogs)
     },
+
     post: (request, response) => {
         const index = dogs[dogs.length-1].index+1
 
@@ -39,20 +40,26 @@ module.exports = {
         dogs.push(newDog)
         response.status(200).send(dogs)
     },
-    update: (request, response) => {
-        let {index} = request.params
-        let {text} = request.body
 
-        let object = dogs.find((element) => {
-            return element.index === +index;
+    update: (request, response) => {
+        const {id, comment} = request.params
+        let thisDogComments = []
+
+        const updatedDogs = dogs.map((dog) => {
+            if(dog.index === +id){
+                dog.comments.push(comment)
+                thisDogComments = dog.comments
+            }
+            return dog;
         })
-        object.name = text
-        response.status(200).send(dogs)
+        dogs = updatedDogs
+        response.status(200).send(thisDogComments)
     },
+
     delete: (request, response) => {
-        const deleteDog = request.params.index;
+        const deleteDog = request.params.id*1;
         let dogIndex = dogs.findIndex(dog => {
-            dog.index === deleteDog})
+            return dog.index === deleteDog})
         dogs.splice(dogIndex, 1)
         response.status(200).send(dogs)
     }

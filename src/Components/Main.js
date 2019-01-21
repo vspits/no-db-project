@@ -37,7 +37,8 @@ class Main extends Component {
                         key={eachDoggoObj.index} 
                         name={eachDoggoObj.name} 
                         bio={eachDoggoObj.bio}
-                        image={eachDoggoObj.image}/>
+                        image={eachDoggoObj.image}
+                        index={eachDoggoObj.index}/>
                 )
             }
         )

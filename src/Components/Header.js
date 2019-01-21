@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
-import Doggos from './Doggos'
+// import Doggos from './Doggos'
 
 class Header extends Component {
     constructor(props){

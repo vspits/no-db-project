@@ -10,23 +10,19 @@ class Comment extends Component {
         }
     }
 
-    componentDidMount(){
-        axios.get('/api/dog').then(response => this.setState({ doggos: response.data}))
-    }
-
     handleUserInput(value){
         this.setState({userInput: value})
     }
 
-    handleAddComment(index){
+    handleAddComment(){
         let text = {
-            text: this.state.userInput
+            comment: this.state.userInput
         }
-        axios.put(`/api/dog/${index}`, text)
+        axios.put(`/api/dog/${this.props.index}/${this.state.userInput}`)
         .then(response => {
-            this.handleUserInput(response.data)
+            // this.handleUserInput(response.data)
             this.setState({ 
-                doggos: response.data
+                comments: response.data
             })
         })
         .catch(error => console.log('error'))
@@ -36,9 +32,14 @@ class Comment extends Component {
         return(
             <div>
                 <h6 className='commentsHead'>Comments:</h6>
-                <input onChange={(event) => this.handleAddComment(event.target.value)}/>
-                <button onClick={() => this.handleAddComment(this.state.userInput)}>Comment</button>
-                {this.state.comments}
+
+                <div className="commentsDiv">
+                    {this.state.comments}
+                </div>
+                
+                <input onChange={(event) => this.handleUserInput(event.target.value)}/>
+                
+                <button onClick={() => this.handleAddComment()}>Comment</button>
             </div>
         )
     }

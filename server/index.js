@@ -13,9 +13,9 @@ app.get(`/api/dog`, controller.getDoggos)
 
 app.post(`/api/dog`, controller.post)
 
-app.put(`/api/dog:index`)
+app.put(`/api/dog/:id/:comment`, controller.update)
 
-app.delete(`/api/dog`)
+app.delete(`/api/dog/:id`, controller.delete)
 
 
 
