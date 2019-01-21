@@ -1,13 +1,22 @@
 import React, {Component} from 'react'
+import axios from 'axios'
 import Doggos from './Doggos'
-import Main from './Main'
 
 class Header extends Component {
     constructor(props){
         super(props)
         this.state = {
+            doggos: [],
             userInput: ''
         }
+    }
+
+    componentDidMount(){
+        axios.get('/api/dog')
+        .then(response => {
+            console.log(response);
+            this.setState({doggos: response.data})
+        })
     }
 
     handleChange(value){
@@ -15,10 +24,13 @@ class Header extends Component {
     }
 
     render(){
-        // let displayDoggos = props.dogs.filter((dog, index) =>{
-        //     return dogs.name.includes(this.state.userInput)
-        // }).map((dog, index) => {
-        //     return <Doggos key={index}/>
+        // let displayDoggos = this.state.doggos.filter((dogObj, index) =>{
+        //     return dogObj.name.includes(this.state.userInput)
+        // }).map((dogObj, index) => {
+        //     return <Doggos key={index}
+        //                 name={dogObj.name} 
+        //                 bio={dogObj.bio}
+        //                 image={dogObj.image}/>
         // })
 
         return (

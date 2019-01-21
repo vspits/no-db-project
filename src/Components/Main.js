@@ -12,15 +12,24 @@ class Main extends Component {
             image: '',
             bio: '',
         }
+        this.getDoggoData = this.getDoggoData.bind(this)
     }
 
     componentDidMount(){
+       this.getDoggoData()
+    }
+
+    getDoggoData(){
         axios.get('/api/dog')
-        .then((response) => this.setState({doggos: response.data}))
+        .then(response => {
+            console.log(response.data);
+            this.setState({doggos: response.data})
+        })
     }
 
     render(){
         
+
         const mappedDoggos = this.state.doggos.map(
             (eachDoggoObj) => {
                 return (
@@ -40,7 +49,8 @@ class Main extends Component {
                     {mappedDoggos}
                 </div>
                 <div>
-                    <NewDoggo />
+                    <NewDoggo 
+                        getDoggoData={this.getDoggoData}/>
                 </div>
             </div>
         )

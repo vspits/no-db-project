@@ -6,12 +6,12 @@ class DeleteDoggo extends Component {
     constructor(){
         super()
         this.state = {
-            doggos: []
+            doggo: []
         }
     }
 
-    handleDeleteDoggo(){
-        axios.delete(`/api/dog`).then(response => this.setState({doggos: response.data}))
+    handleDeleteDoggo(index){
+        axios.delete(`/api/dog/${index}`).then(response => this.setState({doggo: response.data}))
     }
 
     render(){
@@ -19,7 +19,7 @@ class DeleteDoggo extends Component {
             <div>
                 <button 
                 className='deleteButton'
-                onClick={() => this.handleDeleteDoggo(this.state.doggos)}>Remove Doggo</button>
+                onClick={() => this.handleDeleteDoggo(this.state.doggo)}>Remove Doggo</button>
             </div>
         )
     }

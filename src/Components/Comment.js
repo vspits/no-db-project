@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import axios from 'axios';
 
 class Comment extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             comments: [],
             userInput: ''
@@ -11,16 +11,24 @@ class Comment extends Component {
     }
 
     componentDidMount(){
-        axios.get('/api/dogs').then(response => this.setState({ doggos: response.data}))
+        axios.get('/api/dog').then(response => this.setState({ doggos: response.data}))
     }
 
-    handldeUserInput(value){
+    handleUserInput(value){
         this.setState({userInput: value})
     }
 
-    handleAddComment(){
-        axios.put('/api/dogs/:id')
-        .then(response => this.setState({ doggos: response.data}))
+    handleAddComment(index){
+        let text = {
+            text: this.state.userInput
+        }
+        axios.put(`/api/dog/${index}`, text)
+        .then(response => {
+            this.handleUserInput(response.data)
+            this.setState({ 
+                doggos: response.data
+            })
+        })
         .catch(error => console.log('error'))
     }
 

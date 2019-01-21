@@ -2,12 +2,12 @@ import React, {Component} from 'react'
 import axios from 'axios'
 
 class NewDoggo extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             newDoggo: [],
             nameInput: '',
-            imageInput: '',
+            imageInput: './Ace.jpg',
             bioInput: '',
         }
     }
@@ -25,13 +25,19 @@ class NewDoggo extends Component {
     }
 
     handleAddDoggo(){
+        console.log('things are happening');
+        
         const bodyObj = {
             name: this.state.nameInput,
             image: this.state.imageInput,
-            bioInput: this.state.bioInput
+            bio: this.state.bioInput
         }
+        console.log(bodyObj);
+        
         axios.post(`/api/dog`, bodyObj).then(response => {
-            this.setState({newDoggo: response.data})
+            console.log(response);
+            this.props.getDoggoData()
+        
         })
         this.setState({
             nameInput: '',
@@ -62,7 +68,7 @@ class NewDoggo extends Component {
 
                 <button 
                 className='addDoggoButton'
-                onClick={() => this.handleAddDoggo}>Add Doggo</button>
+                onClick={() => this.handleAddDoggo()}>Add Doggo</button>
             </div>
         )
     }

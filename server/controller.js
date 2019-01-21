@@ -23,7 +23,7 @@ let dogs = [
 ]
 
 module.exports = {
-    get: (request, response) => {
+    getDoggos: (request, response) => {
         console.log(dogs)
         response.status(200).send(dogs)
     },
@@ -40,15 +40,20 @@ module.exports = {
         response.status(200).send(dogs)
     },
     update: (request, response) => {
-        let {id} = request.params
+        let {index} = request.params
+        let {text} = request.body
+
         let object = dogs.find((element) => {
-            return element.id === +id;
+            return element.index === +index;
         })
-        object.name = 
+        object.name = text
         response.status(200).send(dogs)
     },
     delete: (request, response) => {
-
+        const deleteDog = request.params.index;
+        let dogIndex = dogs.findIndex(dog => {
+            dog.index === deleteDog})
+        dogs.splice(dogIndex, 1)
         response.status(200).send(dogs)
     }
 }
